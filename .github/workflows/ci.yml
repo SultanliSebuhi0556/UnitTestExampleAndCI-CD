@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
@@ -35,8 +35,8 @@ jobs:
 
       - name: Build app
         working-directory: ./UnitTestExample
-        run: dotnet build
+        run: dotnet build --configuration Release
 
       - name: Run tests
         working-directory: ./UnitTestExample
-        run: dotnet test --no-build --configuration Release --verbosity normal
+        run: dotnet test ../UnitTestExample.Tests/UnitTestExample.Tests.csproj --no-build --configuration Release --verbosity normal
