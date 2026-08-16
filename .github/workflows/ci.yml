@@ -29,11 +29,14 @@ jobs:
           key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
           restore-keys: nuget-${{ runner.os }}
 
-      - name: Restore packages
+      - name: Restore dependencies
+        working-directory: ./UnitTestExample
         run: dotnet restore
 
       - name: Build app
+        working-directory: ./UnitTestExample
         run: dotnet build
 
       - name: Run tests
+        working-directory: ./UnitTestExample
         run: dotnet test --no-build --configuration Release --verbosity normal
